@@ -15,6 +15,7 @@ type FieldType = {
 function TodoList() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [activeTab, setActiveTab] = useState<string>('All');
+  const [form] = Form.useForm();
 
   const addTodo: FormProps<FieldType>['onFinish'] = (values) => {
     setTodos([{
@@ -22,6 +23,7 @@ function TodoList() {
       title: values.title,
       completed: false,
     }, ...todos]);
+    form.setFieldValue(['title'], null);
   };
 
   const changeStatus = (id: number) => {
@@ -31,12 +33,13 @@ function TodoList() {
   }
 
   const clearCompleted = () => {
-    setTodos(todos.filter(el => el.completed === false))
+    setTodos(todos.filter(el => el.completed === false));
   }
 
   return (
     <Flex vertical gap="24px" style={{ width: '600px', height: '500px' }}>
       <Form
+        form={form}
         layout="inline"
         onFinish={addTodo}
       >

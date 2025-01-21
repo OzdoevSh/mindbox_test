@@ -1,0 +1,9 @@
+module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'jsdom',
+  transform: {
+    '^.+\\.(ts|tsx)$': 'ts-jest',
+  },
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
+  testMatch: ['<rootDir>/src/**/*.test.(ts|tsx)'],
+};
